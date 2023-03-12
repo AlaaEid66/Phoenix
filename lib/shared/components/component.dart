@@ -8,7 +8,7 @@ Widget defButton({
   required String text,
   Color textColor =Colors.white,
   double border=15,
-  double fontSize = 30,
+  double fontSize = 14,
 }){
   return Container(
     width: width,
