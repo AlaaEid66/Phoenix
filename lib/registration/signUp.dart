@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:colour/colour.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,6 +10,8 @@ import 'package:phoenix/shared/components/component.dart';
 
 
 class SignUp extends StatefulWidget {
+  const SignUp({super.key});
+
 
 
   @override
@@ -16,8 +20,8 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   var password , email;
-  bool? passwordvisible = false;
-  GlobalKey<FormState>formstate = new GlobalKey<FormState>();
+  bool? passwordVisible = false;
+  GlobalKey<FormState>formstate = GlobalKey<FormState>();
 
   signUp()async{
 
@@ -26,25 +30,25 @@ class _SignUpState extends State<SignUp> {
       print('Valid');
       formdata.save();
       try{
-        UserCredential  usercredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        UserCredential  userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
-        return usercredential;
+        return userCredential;
       }on FirebaseAuthException catch(e){
         if(e.code == "weak password"){
           AwesomeDialog(
             context: context,
             title: 'Error',
-            body: Text("Password is too weak"),
-          )..show();
+            body:const Text("Password is too weak"),
+          ).show();
           print("The password provided is too weak");
         }else if(e.code == "email-already-in-use"){
           AwesomeDialog(
             context: context,
             title: 'Error',
-            body: Text("The account is already exists for that email"),
-          )..show();
+            body: const Text("The account is already exists for that email"),
+          ).show();
           print("The account already exists for the email");
         }
       }catch(e){
@@ -74,7 +78,7 @@ class _SignUpState extends State<SignUp> {
                     child: Container(
                       width: 120,
                       height: 120,
-                      child:CircleAvatar(
+                      child:const CircleAvatar(
                         backgroundColor: Colors.white,
                         child: Image(
                           image:AssetImage('assets/images/logo.jpg'),
@@ -102,7 +106,7 @@ class _SignUpState extends State<SignUp> {
                     vertical: 10,
                   ),
                   child: Container(
-                    color:Colors.blueGrey[50],
+                    color:Colour('#EFEFEF'),
                     child: TextFormField(
                       onSaved: (val){
                         email = val;
@@ -127,7 +131,7 @@ class _SignUpState extends State<SignUp> {
                           borderRadius:BorderRadius.circular(10),
                         ),
                         labelText: 'E-mail',
-                        prefixIcon: Icon(
+                        prefixIcon:const Icon(
                           Icons.mail,
                         ),
                       ),
@@ -140,7 +144,7 @@ class _SignUpState extends State<SignUp> {
                     vertical: 10,
                   ),
                   child: Container(
-                    color:Colors.blueGrey[50],
+                    color:Colour('#EFEFEF'),
                     child: TextFormField(
                       keyboardType:TextInputType.phone,
                       decoration:InputDecoration(
@@ -148,7 +152,7 @@ class _SignUpState extends State<SignUp> {
                           borderRadius:BorderRadius.circular(10),
                         ),
                         labelText: 'Phone Number',
-                        prefixIcon: Icon(
+                        prefixIcon:const Icon(
                           Icons.phone_iphone_rounded,
                         ),
                       ),
@@ -160,7 +164,7 @@ class _SignUpState extends State<SignUp> {
                     horizontal: 36,
                   ),
                   child: Container(
-                    color:Colors.blueGrey[50],
+                    color:Colour('#EFEFEF'),
                     child: TextFormField(
                       onSaved: (val){
                         password = val;
@@ -178,7 +182,7 @@ class _SignUpState extends State<SignUp> {
                         return null;
                       },
 
-                      obscureText: passwordvisible!,
+                      obscureText: passwordVisible!,
                       decoration:InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius:BorderRadius.circular(10),
@@ -197,14 +201,14 @@ class _SignUpState extends State<SignUp> {
                     vertical: 10,
                   ),
                   child: Container(
-                    color:Colors.blueGrey[50],
+                    color:Colour('#EFEFEF'),
                     child: TextFormField(
                       decoration:InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius:BorderRadius.circular(10),
                         ),
                         labelText:'Gender',
-                        prefixIcon:Icon(
+                        prefixIcon:const Icon(
                           Icons.transgender,
                         ),
                       ),
@@ -217,7 +221,7 @@ class _SignUpState extends State<SignUp> {
                     vertical: 10,
                   ),
                   child: Container(
-                    color:Colors.blueGrey[50],
+                    color:Colour('#EFEFEF'),
                     child: TextFormField(
                       keyboardType:TextInputType.number,
                       decoration:InputDecoration(
@@ -225,14 +229,14 @@ class _SignUpState extends State<SignUp> {
                           borderRadius:BorderRadius.circular(10),
                         ),
                         labelText: 'Date of birth',
-                        prefixIcon: Icon(
+                        prefixIcon:const Icon(
                           Icons.date_range_rounded ,
                         ),
                       ),
                     ),
                   ),
                 ),
-                SizedBox(
+               const SizedBox(
                   height: 20,
                 ),
                 defButton(
@@ -250,7 +254,7 @@ class _SignUpState extends State<SignUp> {
                   },
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 Container(
@@ -270,7 +274,7 @@ class _SignUpState extends State<SignUp> {
                           children: [
                             Container(
                               height: 30,
-                              child: Image(
+                              child:const Image(
                                 image:AssetImage('assets/images/pic2.png'),
                               ),
                             ),
@@ -292,7 +296,6 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                 ),
-
                const SizedBox(
                   height: 1,
                 ),
