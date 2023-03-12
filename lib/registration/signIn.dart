@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -6,14 +7,16 @@ import 'package:phoenix/registration/signUp.dart';
 import 'package:phoenix/shared/components/component.dart';
 import '../screens/homepage.dart';
 class SignIn extends StatefulWidget {
+  const SignIn({super.key});
+
   @override
   _SignInState createState() => _SignInState();
 }
 
 class _SignInState extends State<SignIn> {
-  bool ?passwordvisible = false;
+  bool ?passwordVisible = false;
   var password, email;
-  GlobalKey<FormState>formstate = new GlobalKey<FormState>();
+  GlobalKey<FormState>formstate = GlobalKey<FormState>();
 
   signIn()async{
     var formdata =formstate.currentState;
@@ -22,24 +25,24 @@ class _SignInState extends State<SignIn> {
       print('Valid');
       formdata.save();
       try{
-        UserCredential  usercredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        UserCredential  userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
-        return usercredential;
+        return userCredential;
       }on FirebaseAuthException catch(e){
         if(e.code == "User-not-found"){
           AwesomeDialog(
             context: context,
             title: 'Error',
-            body: Text("No user found for this email"),
-          )..show();
+            body: const Text("No user found for this email"),
+          ).show();
         }else if(e.code == "wrong-password"){
           AwesomeDialog(
             context: context,
             title: 'Error',
-            body: Text("Wrong password provided for that email"),
-          )..show();
+            body:const Text("Wrong password provided for that email"),
+          ).show();
         }
       }catch(e){
         print(e);
@@ -67,7 +70,7 @@ class _SignInState extends State<SignIn> {
                   child: Container(
                     width: 120,
                     height: 120,
-                    child:CircleAvatar(
+                    child:const CircleAvatar(
                       backgroundColor: Colors.white,
                       child: Image(
                         image:AssetImage('assets/images/logo.jpg'),
@@ -114,7 +117,7 @@ class _SignInState extends State<SignIn> {
                           borderRadius:BorderRadius.circular(10),
                         ),
                         labelText: 'E-mail',
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.mail,
                         ),
                       ),
@@ -141,7 +144,7 @@ class _SignInState extends State<SignIn> {
                         return null;
                       },
 
-                      obscureText: passwordvisible!,
+                      obscureText: passwordVisible!,
                       decoration:InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius:BorderRadius.circular(10),
@@ -170,7 +173,7 @@ class _SignInState extends State<SignIn> {
                     onPressed:(){},
                   ),
                 ),
-                SizedBox(
+               const SizedBox(
                   height: 20,
                 ),
                 defButton(
@@ -189,7 +192,7 @@ class _SignInState extends State<SignIn> {
                     }
                   },
                 ),
-                SizedBox(
+               const SizedBox(
                   height: 12,
                 ),
                 Container(
