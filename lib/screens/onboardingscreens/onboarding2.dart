@@ -22,7 +22,7 @@ class _Screen2State extends State<Screen2> {
                Using chat bot and photo detection
                technology that can help you in
                recovery journey.''',
-            textAlign:TextAlign.center,
+            textAlign:TextAlign.justify,
             style:TextStyle(
               fontFamily: 'Segoe UI.ttf',
               fontWeight: FontWeight.normal,

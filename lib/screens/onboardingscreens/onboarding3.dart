@@ -14,11 +14,11 @@ class _Screen3State extends State<Screen3> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(child: Image.asset('assets/images/p2.jpg')),
-          Text('''You can enter the world of meta-virus &
-               Using chat bot and photo detection
-               technology that can help you in
-               recovery journey.''',
+          Center(child: Image.asset('assets/images/p3.jpg')),
+          const SizedBox(
+            height: 20,
+          ),
+          Text('Together until recovery!',
             textAlign:TextAlign.center,
             style:TextStyle(
               fontFamily: 'Segoe UI.ttf',

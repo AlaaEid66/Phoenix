@@ -15,6 +15,9 @@ class _Screen1State extends State<Screen1> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(child: Image.asset('assets/images/p1.jpg')),
+          const SizedBox(
+            height: 10,
+          ),
           Text(
            'All you need !',
            style: TextStyle(
@@ -35,7 +38,24 @@ class _Screen1State extends State<Screen1> {
               color:Colour('#505050'),
             ),
           ),
-
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 30,
+                ),
+                child: TextButton(
+                  onPressed:(){},
+                  child: Text(
+                    'Skip',
+                    style:TextStyle(
+                      color:Colour('#008894'),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
