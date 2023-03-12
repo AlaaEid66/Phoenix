@@ -1,22 +1,75 @@
+import 'package:colour/colour.dart';
 import 'package:flutter/material.dart';
-import 'package:phoenix/registration/signIn.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:phoenix/screens/onboardingscreens/onboarding_screens.dart';
 void main() {
 
   runApp(DevicePreview(
-      builder:(context)=> MyApp()));
+      builder:(context)=> const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      builder:DevicePreview.appBuilder,
-      debugShowCheckedModeBanner: false,
-      home: SignIn(),
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (BuildContext context,child){
+        return const MaterialApp(
+            builder:DevicePreview.appBuilder,
+            debugShowCheckedModeBanner: false,
+            home: SplashScreen(),);
+      },
     );
   }
 }
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  bool? isLoading = false;
+  @override
+  void initState()
+  {
+    super.initState();
+    Future.delayed(Duration(seconds: 3),
+            ()=>Navigator.push(context,MaterialPageRoute(builder:(_)=>OnBoardingScreen())));
+
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        constraints: BoxConstraints.expand(),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/p0.jpg'),
+            fit: BoxFit.cover,
+          ),),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 400),
+          child:MaterialButton(
+            onPressed: (){
+              Navigator.push(context,MaterialPageRoute(builder:(_)=>OnBoardingScreen()));
+
+            },
+            child: CircularProgressIndicator(
+              backgroundColor:Colour('#FFFFFF'),
+              color:Colour('#FFFFFF'),),
+          ),
+        ),
+
+      ),
+    );
+  }
+}
+
 
 
