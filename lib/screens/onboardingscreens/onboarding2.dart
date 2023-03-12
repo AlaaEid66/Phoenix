@@ -15,6 +15,9 @@ class _Screen2State extends State<Screen2> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(child: Image.asset('assets/images/p2.jpg')),
+         const SizedBox(
+            height: 20,
+          ),
           Text('''You can enter the world of meta-virus &
                Using chat bot and photo detection
                technology that can help you in
