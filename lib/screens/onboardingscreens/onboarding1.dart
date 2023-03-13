@@ -1,5 +1,6 @@
 import 'package:colour/colour.dart';
 import 'package:flutter/material.dart';
+
 class Screen1 extends StatefulWidget {
   const Screen1({Key? key}) : super(key: key);
 
@@ -19,23 +20,24 @@ class _Screen1State extends State<Screen1> {
             height: 10,
           ),
           Text(
-           'All you need !',
-           style: TextStyle(
-             color:Colour('#505050'),
-             fontWeight: FontWeight.bold,
-             fontSize: 18,
-             fontFamily:'Segoe Script',
-           ),
-         ),
-          Text('''An integrated community in which
+            'All you need !',
+            style: TextStyle(
+              color: Colour('#505050'),
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              fontFamily: 'Segoe Script',
+            ),
+          ),
+          Text(
+            '''An integrated community in which
             you can find doctors, psychiatrists
             and recovers to help you.''',
-            textAlign:TextAlign.center,
-            style:TextStyle(
+            textAlign: TextAlign.justify,
+            style: TextStyle(
               fontFamily: 'Segoe UI.ttf',
               fontWeight: FontWeight.normal,
               fontSize: 16,
-              color:Colour('#505050'),
+              color: Colour('#505050'),
             ),
           ),
           Row(
@@ -45,10 +47,10 @@ class _Screen1State extends State<Screen1> {
                   horizontal: 30,
                 ),
                 child: TextButton(
-                  onPressed:(){},
+                  onPressed: () {},
                   child: Text(
                     'Skip',
-                    style:TextStyle(
+                    style: TextStyle(
                       color:Colour('#008894'),
                     ),
                   ),
