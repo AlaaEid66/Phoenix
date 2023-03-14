@@ -1,13 +1,13 @@
 import 'package:colour/colour.dart';
 import 'package:flutter/material.dart';
-class Screen3 extends StatefulWidget {
-  const Screen3({Key? key}) : super(key: key);
+class OnBoarding3 extends StatefulWidget {
+  const  OnBoarding3({Key? key}) : super(key: key);
 
   @override
-  State<Screen3> createState() => _Screen3State();
+  State<OnBoarding3> createState() => _OnBoarding3State();
 }
 
-class _Screen3State extends State<Screen3> {
+class _OnBoarding3State extends State<OnBoarding3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +18,7 @@ class _Screen3State extends State<Screen3> {
           const SizedBox(
             height: 20,
           ),
-          Text('Together until recovery!',
+          Text('Together until recovery !',
             textAlign:TextAlign.center,
             style:TextStyle(
               fontFamily: 'Segoe UI.ttf',
