@@ -11,16 +11,26 @@ class _OnBoarding2State extends State<OnBoarding2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colour('#FFFFFF'),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(child: Image.asset('assets/images/p2.jpg')),
-         const SizedBox(
-            height: 20,
+          Padding(
+            padding: const EdgeInsets.only(
+              right: 44,
+              left: 44,
+              bottom: 8,
+              top:157,
+            ),
+            child: Image.asset('assets/images/p2.jpg'),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(
+              right: 48,
+              left: 49,
+              bottom: 99,
+            ),
             child: RichText(
               textAlign:TextAlign.center,
               text: TextSpan(
@@ -42,8 +52,7 @@ class _OnBoarding2State extends State<OnBoarding2> {
                     ),
                   ),
                   TextSpan(
-                    text: '''&
-                    Using ''',
+                    text: '& \nUsing ',
                     style:TextStyle(
                       fontFamily: 'Segoe UI.ttf',
                       fontWeight: FontWeight.normal,
@@ -61,9 +70,7 @@ class _OnBoarding2State extends State<OnBoarding2> {
                     ),
                   ),
                   TextSpan(
-                    text:'''and photodetection 
-                    technology that can help you in 
-                    recovery journey.''',
+                    text:' and photodetection    \n technology that can help you in      \n recovery journey.',
                     style:TextStyle(
                       fontFamily: 'Segoe UI.ttf',
                       fontWeight: FontWeight.normal,

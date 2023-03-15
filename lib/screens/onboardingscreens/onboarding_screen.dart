@@ -21,13 +21,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>{
     _controller = PageController();
     super.initState();
   }
-
   int _currentPage = 0;
-  // List colors = const [
-  //   Color(0xffDAD3C8),
-  //   Color(0xffFFE5DE),
-  //   Color(0xffDCF6E6),
-  // ];
 
   AnimatedContainer _buildDots({
     int? index,
@@ -38,7 +32,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>{
         borderRadius: const BorderRadius.all(
           Radius.circular(80),
         ),
-        color:_currentPage==index?Colour('#008894'):Colour('#FFFFFF'),
+        color:_currentPage==index?Colour('#008894'):Colour('#000000').withOpacity(0.16),
       ),
       margin: const EdgeInsets.only(right: 5),
       height: 14,
@@ -54,11 +48,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>{
     double height = SizeConfig.screenH!;
 
     return Scaffold(
+      backgroundColor: Colour('#FFFFFF'),
       body: SafeArea(
         child: Column(
           children: [
             Expanded(
-              flex: 3,
+              flex: 2,
               child: Center(
                 child: PageView(
                   physics: const BouncingScrollPhysics(),
@@ -88,37 +83,49 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>{
                   ),
                   _currentPage + 1 == contents.length
                       ? Padding(
-                    padding: const EdgeInsets.all(30),
-                    child: SizedBox(
-                      width: 117,
+                    padding: const EdgeInsets.only(
+                      top: 67,
+                      right: 128,
+                      left: 128,
+                      bottom: 120,
+                    ),
+                    child: Container(
+                      width: 119,
                       height: 37,
-                      child: ElevatedButton(
+                      decoration: BoxDecoration(
+                        borderRadius:BorderRadius.circular(90),
+                      ),
+                      child: MaterialButton(
                         onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:Colour('#008894'),
-                          // padding: (width <= 400)
-                          //     ? const EdgeInsets.symmetric(
-                          //     horizontal: 70, vertical: 10)
-                          //     : EdgeInsets.symmetric(
-                          //     horizontal: width * 0.1, vertical: 20),
-                          textStyle: const TextStyle(
-                            fontSize: 17,
-                            fontWeight:FontWeight.bold,
-                            fontFamily: 'Segoe UI',
+                        color:Colour('#008894'),
+                        elevation: 1,
+                        child:const Text("Start now!",
+                          style:TextStyle(
+                            color: Colors.white,
+                            fontFamily:'Segoe UI',
+                            fontSize:17,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        child: const  Text("Start now!"),
+
                       ),
                     ),
+
                   )
                       : Padding(
-                    padding: const EdgeInsets.all(30),
+                    padding: const EdgeInsets.only(
+                      right: 39,
+                      left: 57,
+                      top: 54,
+                      bottom: 68,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextButton(
                           onPressed: () {
-                            _controller.jumpToPage(2);
+                            _controller.jumpTo(0);
+                            // _controller.jumpToPage(2);
                           },
                           style: TextButton.styleFrom(
                             elevation: 0,
@@ -133,31 +140,35 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>{
                             style: TextStyle(color: Colour('#008894')),
                           ),
                         ),
-                        SizedBox(
-                          width: 80,
-                          height: 40,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              _controller.nextPage(
-                                duration: const Duration(milliseconds: 200),
-                                curve: Curves.easeIn,
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:Colour('#008894'),
-                              elevation: 0,
-                              // padding: (width <= 550)
-                              //     ? const EdgeInsets.symmetric(
-                              //     horizontal: 30, vertical: 20)
-                              //     : const EdgeInsets.symmetric(
-                              //     horizontal: 30, vertical: 25),
-                              textStyle: const TextStyle(
-                                fontFamily:'Segoe UI',
-                                fontSize:18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 163,
+                          ),
+                          child: Container(
+                            width: 80,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              borderRadius:BorderRadius.circular(90),
                             ),
-                            child: const Text("NEXT"),
+                            child: MaterialButton(
+                              onPressed: () {
+                                _controller.nextPage(
+                                  duration: const Duration(milliseconds: 200),
+                                  curve: Curves.easeIn,
+                                );
+                              },
+                              color:Colour('#008894'),
+                              elevation: 1,
+                              child:const Text("Next",
+                                style:TextStyle(
+                                  color: Colors.white,
+                                  fontFamily:'Segoe UI',
+                                  fontSize:18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+
+                            ),
                           ),
                         ),
                       ],
