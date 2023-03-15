@@ -39,16 +39,16 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState()
   {
     super.initState();
-    Future.delayed(Duration(seconds: 3),
-            ()=>Navigator.push(context,MaterialPageRoute(builder:(_)=>OnBoardingScreen())));
+    Future.delayed(const Duration(seconds: 3),
+            ()=>Navigator.push(context,MaterialPageRoute(builder:(_)=>const OnBoardingScreen())));
 
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        constraints: BoxConstraints.expand(),
-        decoration: BoxDecoration(
+        constraints: const BoxConstraints.expand(),
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/p0.jpg'),
             fit: BoxFit.cover,

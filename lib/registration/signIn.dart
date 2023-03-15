@@ -15,7 +15,10 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   bool ?passwordVisible = false;
-  var password, email;
+  var email;
+  var password;
+  var emailController=TextEditingController();
+  var passwordController=TextEditingController();
   GlobalKey<FormState>formstate = GlobalKey<FormState>();
 
   signIn()async{
@@ -63,9 +66,11 @@ class _SignInState extends State<SignIn> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 100,
-                    vertical: 30,
+                  padding: const EdgeInsets.only(
+                    right: 140,
+                    left: 140,
+                    top: 88,
+                    bottom: 16,
                   ),
                   child: Container(
                     width: 120,
@@ -80,7 +85,9 @@ class _SignInState extends State<SignIn> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                    bottom: 100,
+                    bottom: 80,
+                    left: 135,
+                    right: 135,
                   ),
                   child:Text(
                     'Sign In',
@@ -92,43 +99,39 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 36,
-                    vertical: 20,
+                  padding: const EdgeInsets.only(
+                    left: 36,
+                    right: 35,
+                    bottom: 12,
                   ),
-                  child: Container(
-                    color:Colors.blueGrey[50],
-                    child: TextFormField(
-                      keyboardType:TextInputType.emailAddress,
-                      validator: (val) {
-                        if(val!.isEmpty){
-                          return("Not valid.Please try again");
-                        }
-                        if (val.length > 100) {
-                          return "Email can't to be larger than 100 letter";
-                        }
-                        if (val.length < 2) {
-                          return "Email can't to be less than 2 letter";
-                        }
-                        return null;
-                      },
-                      decoration:InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius:BorderRadius.circular(10),
-                        ),
-                        labelText: 'E-mail',
-                        prefixIcon: const Icon(
-                          Icons.mail,
-                        ),
-                      ),
-                    ),
+                  child: defaultFormField(
+
+                    validate:(val) {
+                      if(val!.isEmpty){
+                        return("Not valid.Please try again");
+                      }
+                      if (val.length > 100) {
+                        return "Email can't to be larger than 100 letter";
+                      }
+                      if (val.length < 2) {
+                        return "Email can't to be less than 2 letter";
+                      }
+                      return null;
+                    },
+                    controller:emailController,
+                    keyboard:TextInputType.emailAddress,
+                    border: BorderRadius.circular(40),
+
+
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 36,
+                  padding: const EdgeInsets.only(
+                    left: 36,
+                    right: 35,
                   ),
                   child: Container(
+
                     color:Colors.blueGrey[50],
                     child: TextFormField(
                       validator: (val) {
@@ -150,6 +153,9 @@ class _SignInState extends State<SignIn> {
                           borderRadius:BorderRadius.circular(10),
                         ),
                         labelText: 'Password',
+                        labelStyle: TextStyle(
+                          color: Colour('#000000').withOpacity(0.04),
+                        ),
                         prefixIcon:const Icon(
                           Icons.lock_outline_sharp,
                         ),
@@ -159,42 +165,49 @@ class _SignInState extends State<SignIn> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                    left: 190,
+                    left: 226,
+                    top: 6,
+                    right: 41,
                   ),
                   child: TextButton(
                     child:Text(
                       'Forget Password?',
                       style:TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
                         color:Colour('#505050'),
                       ),
                     ),
                     onPressed:(){},
                   ),
                 ),
-               const SizedBox(
-                  height: 20,
-                ),
-                defButton(
-                  text: 'Sign In',
-                  pressed: ()async{
-                    if(formstate.currentState!.validate()){
-                      Navigator.push(context,MaterialPageRoute(builder:(_)=>HomePage()));
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 36,
+                    right: 35,
+                    top: 48,
+                    bottom: 16,
+                  ),
+                  child: defButton(
+                    backgroundColor: Colour('#008894'),
+                    fontSize: 18,
+                    text: 'Sign In',
+                    pressed: ()async{
+                      if(formstate.currentState!.validate()){
+                        Navigator.push(context,MaterialPageRoute(builder:(_)=>HomePage()));
 
-                    }
-                    UserCredential ?response = await signIn();
-                    if(response != null){
-                      print("Hiii");
+                      }
+                      UserCredential ?response = await signIn();
+                      if(response != null){
+                        print("Login Done");
 
-                    }else{
-                      print('Sign Up Failed');
-                    }
-                  },
+                      }else{
+                        print('Sign Up Failed');
+                      }
+                    },
+                  ),
                 ),
-               const SizedBox(
-                  height: 12,
-                ),
+
                 Container(
                   width: 370,
                   height: 50,
@@ -234,9 +247,7 @@ class _SignInState extends State<SignIn> {
                     ),
                   ),
                 ),
-               const  SizedBox(
-                  height: 10,
-                ),
+
                 Row(
                   mainAxisAlignment:MainAxisAlignment.center,
                   children: [

@@ -1,5 +1,6 @@
 import 'package:colour/colour.dart';
 import 'package:flutter/material.dart';
+import 'package:phoenix/registration/signIn.dart';
 import 'package:phoenix/screens/onboardingscreens/onboarding_contents.dart';
 import 'package:phoenix/shared/components/size_config.dart';
 import 'onboarding1.dart';
@@ -96,7 +97,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>{
                         borderRadius:BorderRadius.circular(90),
                       ),
                       child: MaterialButton(
-                        onPressed: () {},
+                        onPressed: ()=>Navigator.push(context,MaterialPageRoute(builder:(_)=>const SignIn())),
                         color:Colour('#008894'),
                         elevation: 1,
                         child:const Text("Start now!",
